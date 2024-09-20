@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Start Tracking Task</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-label>Task ID</mat-label>
+    <input
+      matInput
+      [(ngModel)]="taskId"
+      (ngModelChange)="checkTask()"
+      placeholder="Enter Task ID"
+    />
+  </mat-form-field>
+  <p>{{ message }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="null">Cancel</button>
+  <button
+    mat-button
+    color="primary"
+    [mat-dialog-close]="taskId"
+    [disabled]="!taskId"
+  >
+    Start Tracking
+  </button>
+</div>
