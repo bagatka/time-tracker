@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
+import { ManualDataDialogComponent } from './components/manual-data-dialog/manual-data-dialog.component';
 
 @Component({
   standalone: true,
@@ -74,6 +75,18 @@ export class AppComponent implements OnInit {
         this.trackingDataService.startTask(taskId);
         this.currentTask = this.trackingDataService.getCurrentTask();
         this.startTimer();
+      }
+    });
+  }
+
+  openManualDataDialog(): void {
+    const dialogRef = this.dialog.open(ManualDataDialogComponent);
+
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        const { taskId, timeMinutes } = data;
+        this.trackingDataService.addManualData(taskId, timeMinutes);
+        this.loadTasks();
       }
     });
   }

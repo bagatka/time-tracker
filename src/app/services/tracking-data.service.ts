@@ -38,6 +38,30 @@ export class TrackingDataService {
     return this.currentTask;
   }
 
+  addManualData(taskId: string, timeMinutes: number): void {
+    const timeDurationSeconds = timeMinutes * 60;
+
+    let task = this.tasks.find((t) => t.taskId === taskId);
+
+    if (task) {
+      task.totalSeconds = timeDurationSeconds;
+      task.timeTracked = this.formatTime(timeDurationSeconds);
+      task.updatedAt = new Date().toISOString();
+    } else {
+      task = {
+        id: this.tasks.length + 1,
+        taskId: taskId,
+        totalSeconds: timeDurationSeconds,
+        timeTracked: this.formatTime(timeDurationSeconds),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+      this.tasks.push(task);
+    }
+
+    this.localStorageService.set(this.tasksKey, this.tasks);
+  }
+
   startTask(taskId: string): void {
     const startTime = new Date().toISOString();
     this.currentTask = { taskId, startTime };

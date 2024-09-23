@@ -14,16 +14,29 @@
 </mat-toolbar>
 
 <div class="container">
-  <button
-    class="start-task-button"
-    mat-raised-button
-    color="primary"
-    (click)="openTaskDialog()"
-    [disabled]="currentTask"
-    matTooltip="Start tracking a new task"
-  >
-    Start Task Tracking
-  </button>
+  <div class="top-buttons-container">
+    <button
+      class="start-task-button"
+      mat-raised-button
+      color="primary"
+      (click)="openTaskDialog()"
+      [disabled]="currentTask"
+      matTooltip="Start tracking a new task"
+    >
+      Start Task Tracking
+    </button>
+    <button
+      class="start-task-button"
+      mat-raised-button
+      color="primary"
+      (click)="openManualDataDialog()"
+      [disabled]="currentTask"
+      matTooltip="Add/Edit manual data"
+    >
+      Add/Edit data
+    </button>
+  </div>
+
   <div *ngIf="currentTask" class="current-task">
     <h2>Currently Tracking: {{ currentTask.taskId }}</h2>
     <h3>Elapsed Time: {{ formatTime(elapsedSeconds) }}</h3>
