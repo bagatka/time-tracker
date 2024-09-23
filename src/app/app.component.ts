@@ -36,7 +36,6 @@ import { ManualDataDialogComponent } from './components/manual-data-dialog/manua
   ],
 })
 export class AppComponent implements OnInit {
-  title = 'Time Tracker';
   tasks: Task[] = [];
   displayedColumns: string[] = ['id', 'taskId', 'timeTracked', 'createdAt', 'updatedAt'];
   currentTask: any = null;
@@ -86,6 +85,7 @@ export class AppComponent implements OnInit {
       if (data) {
         const { taskId, timeMinutes } = data;
         this.trackingDataService.addManualData(taskId, timeMinutes);
+        this.updateDailyTrackedTime();
         this.loadTasks();
       }
     });

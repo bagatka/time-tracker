@@ -6,6 +6,7 @@
       matInput
       [(ngModel)]="taskId"
       (ngModelChange)="checkTask()"
+      (keydown.enter)="taskId && dialogRef.close(taskId)"
       placeholder="Enter Task ID"
     />
   </mat-form-field>

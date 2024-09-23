@@ -1,12 +1,10 @@
 <mat-toolbar color="primary">
-  <span>{{ title }}</span>
-  <span class="spacer"></span>
   <span>Daily Tracked: {{ dailyTrackedTime }}</span>
   <mat-progress-bar
     mode="determinate"
     [value]="goalProgress"
     color="accent"
-    style="width: 200px; margin: 0 10px;"
+    style="width: 100%; margin: 0 10px;"
   ></mat-progress-bar>
   <button mat-icon-button (click)="setDailyGoal()" matTooltip="Set Daily Goal">
     <mat-icon>settings</mat-icon>

@@ -1,10 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { TrackingDataService } from '../../services/tracking-data.service';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
   standalone: true,
@@ -24,6 +25,7 @@ export class TaskDialogComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MatDialogRef) public dialogRef: MatDialogRef<TaskDialogComponent>,
     private trackingDataService: TrackingDataService
   ) {}
   checkTask(): void {
