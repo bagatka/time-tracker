@@ -1,3 +1,11 @@
+<div class="overlat-prize-container">
+  <div class="goal-item" [ngClass]="{ 'goal-item-active': goalProgress >= 20 }"></div>
+  <div class="goal-item" [ngClass]="{ 'goal-item-active': goalProgress >= 40 }"></div>
+  <div class="goal-item" [ngClass]="{ 'goal-item-active': goalProgress >= 60 }"></div>
+  <div class="goal-item" [ngClass]="{ 'goal-item-active': goalProgress >= 80 }"></div>
+  <div class="goal-item" [ngClass]="{ 'goal-item-active': goalProgress >= 100 }"></div>
+</div>
+
 <mat-toolbar color="primary">
   <span>Daily Tracked: {{ dailyTrackedTime }}</span>
   <mat-progress-bar

@@ -18,3 +18,28 @@
   display: flex;
   justify-content: space-between;
 }
+
+.overlat-prize-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  top: 24px;
+  position: absolute;
+  z-index: 10;
+  gap: 15%;
+  right: 4.5%;
+}
+
+.goal-item {
+  width: 16px;
+  height: 16px;
+  background-color: pink;
+  border-radius: 50%;
+}
+
+.goal-item-active {
+  background-color: lightgreen;
+  border: 1px solid green;
+}
