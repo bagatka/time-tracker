@@ -1,22 +1,20 @@
-<div class="overlat-prize-container">
-  <div class="goal-item" [ngClass]="{ 'goal-item-active': goalProgress >= 13 }"></div>
-  <div class="goal-item" [ngClass]="{ 'goal-item-active': goalProgress >= 35 }"></div>
-  <div class="goal-item" [ngClass]="{ 'goal-item-active': goalProgress >= 56 }"></div>
-  <div class="goal-item" [ngClass]="{ 'goal-item-active': goalProgress >= 78 }"></div>
-  <div class="goal-item" [ngClass]="{ 'goal-item-active': goalProgress >= 100 }"></div>
-</div>
-
 <mat-toolbar color="primary">
   <span>Daily Tracked: {{ dailyTrackedTime }}</span>
-  <mat-progress-bar
-    mode="determinate"
-    [value]="goalProgress"
-    color="accent"
-    style="width: 100%; margin: 0 10px;"
-  ></mat-progress-bar>
+  <div class="indicator-container">
+    <indicator-line
+      [maxValue]="100"
+      [currentValue]="goalProgress"
+      [prizes]="prizeList"
+      (balanceChanged)="updateBalance()">
+    </indicator-line>
+  </div>
   <button mat-icon-button (click)="setDailyGoal()" matTooltip="Set Daily Goal">
     <mat-icon>settings</mat-icon>
   </button>
+  <div class="balance">
+    <span>{{ balance }}</span>
+    <mat-icon fontIcon="star"></mat-icon>
+  </div>
 </mat-toolbar>
 
 <div class="container">

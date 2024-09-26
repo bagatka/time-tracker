@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { ManualDataDialogComponent } from './components/manual-data-dialog/manual-data-dialog.component';
+import { IndicatorLineComponent, Prize } from './components/indicator-line/indicator-line.component';
+import { BalanceService } from './services/balance.service';
 
 @Component({
   standalone: true,
@@ -32,7 +34,8 @@ import { ManualDataDialogComponent } from './components/manual-data-dialog/manua
     MatTableModule,
     MatIconModule,
     MatInputModule,
-    DatePipe
+    DatePipe,
+    IndicatorLineComponent
   ],
 })
 export class AppComponent implements OnInit {
@@ -45,10 +48,19 @@ export class AppComponent implements OnInit {
   dailyGoalSeconds: number = 23400; // Default 6.5 hours
   goalProgress: number = 0;
   searchText: string = '';
+  prizeList: Prize[] = [
+    { name: 'Prize 0', collectableAtValue: 5, starsValue: 1 },
+    { name: 'Prize 1', collectableAtValue: 25, starsValue: 1 },
+    { name: 'Prize 2', collectableAtValue: 50, starsValue: 2 },
+    { name: 'Prize 3', collectableAtValue: 75, starsValue: 1 },
+    { name: 'Prize 4', collectableAtValue: 100, starsValue: 5 }
+  ];
+  balance = 0;
 
   constructor(
-    private trackingDataService: TrackingDataService,
-    public dialog: MatDialog
+    private readonly trackingDataService: TrackingDataService,
+    private readonly balanceService: BalanceService,
+    public readonly dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -59,6 +71,11 @@ export class AppComponent implements OnInit {
     }
     this.updateDailyTrackedTime();
     this.dailyGoalSeconds = this.trackingDataService.getDailyGoal();
+    this.updateBalance();
+  }
+
+  updateBalance(): void {
+    this.balance = this.balanceService.getBalance();
   }
 
   loadTasks(): void {

@@ -1,0 +1,31 @@
+<div class="indicator-container">
+  <!-- Indicator Line -->
+  <div class="indicator-line">
+    <!-- Filled section representing the current value -->
+    <div class="indicator-fill" [style.width.%]="currentValue"></div>
+
+    <!-- Prize markers along the indicator line -->
+    <div *ngFor="let prize of collectablePrizes"
+         class="prize-marker"
+         [style.left]="calculatePrizePosition(prize.collectableAtValue)">
+      <div
+        class="prize-dot"
+        [ngClass]="{
+          'prize-marker-active': currentValue >= prize.collectableAtValue,
+          'animated-prize-marker': currentValue >= prize.collectableAtValue && !prize.collected
+        }"
+        matTooltip="Click to collect the prize"
+        [matTooltipDisabled]="currentValue < prize.collectableAtValue || prize.collected"
+        (click)="currentValue >= prize.collectableAtValue && openPrizeDialog(prize)"
+      >
+        @if (currentValue >= prize.collectableAtValue) {
+          @if (prize.collected) {
+            <mat-icon fontIcon="done"></mat-icon>
+          } @else {
+            <mat-icon fontIcon="star"></mat-icon>
+          }
+        }
+      </div>
+    </div>
+  </div>
+</div>

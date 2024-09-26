@@ -1,0 +1,93 @@
+.indicator-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.indicator-line {
+  position: relative;
+  width: 100%;
+  height: 10px;
+  background-color: rgb(255, 228, 250);
+  border-radius: 5px;
+  display: flex;
+}
+
+.indicator-fill {
+  background-color: #ffb2f7;
+  height: 100%;
+  border-radius: 5px 0 0 5px;
+  transition: width 0.3s ease;
+}
+
+.prize-marker {
+  position: absolute;
+  top: -8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-50%);
+}
+
+.prize-dot {
+  width: 28px;
+  height: 28px;
+  background-color: pink;
+  border-radius: 50%;
+
+  &>.mat-icon {
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #ffd2f9;
+  }
+}
+
+.prize-marker-active {
+  background-color: #f767f0;
+}
+
+.animated-prize-marker {
+  &:hover {
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+    transform: scale(1.2);
+    background-color: #f14ce9;
+  }
+
+  &:active {
+    transition: all .1s ease-in-out;
+    transform: scale(0.8);
+  }
+
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both, delay-animation 2000ms linear infinite;;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  animation-iteration-count: infinite;
+}
+
+
+@keyframes shake {
+  10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+      transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+      transform: translate3d(4px, 0, 0);
+  }
+}
